@@ -7,6 +7,19 @@ import "../styles/index.css";
 
 //import your own components
 import Home from "./component/home.jsx";
+import Body from "./component/body.jsx";
+import ToDoList from "./component/ToDoList.jsx";
 
-//render your react application
-ReactDOM.render(<Home />, document.querySelector("#app"));
+class App extends React.Component {
+	render() {
+		return (
+			<div>
+				<Home />
+				<Body />
+				<ToDoList />
+			</div>
+		);
+	}
+}
+
+ReactDOM.render(<App />, document.querySelector("#app"));
