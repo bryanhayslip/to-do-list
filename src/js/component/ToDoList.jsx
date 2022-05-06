@@ -21,33 +21,40 @@ export const ToDoList = () => {
 		fn();
 	}, [todos]);
 
-	// Removeitem = () => {
-	// 	const element = document.getElementById("listitem");
-	// 	element.remove();
-	// };
+	const removeToDo = (index) => {
+		const fn = async () => {
+			await setTodos(todos.filter((item, i) => index != i));
+		};
+
+		fn();
+	};
 
 	return (
-		<div className="container">
-			<div className="todoapp">
-				<header>Create Your To Do List</header>
-				<input
-					value={task}
-					onChange={(ev) => setTask(ev.currentTarget.value)}
-					onKeyDown={(ev) => {
-						if (ev.key === "Enter") {
-							setTodos([...todos, task]);
-							setTask("");
-						}
-					}}
-				/>
-				<ul>
-					{todos.map((todo, index) => (
-						<li key={index}>
-							{todo}
-							<button>Delete</button>
-						</li>
-					))}
-				</ul>
+		<div className="body">
+			<div className="container">
+				<div className="todoapp">
+					<header>Create Your To Do List</header>
+					<input
+						value={task}
+						onChange={(ev) => setTask(ev.currentTarget.value)}
+						onKeyDown={(ev) => {
+							if (ev.key === "Enter") {
+								setTodos([...todos, task]);
+								setTask("");
+							}
+						}}
+					/>
+					<ul>
+						{todos.map((todo, index) => (
+							<li key={index}>
+								{todo}
+								<button onClick={() => removeToDo(index)}>
+									Delete
+								</button>
+							</li>
+						))}
+					</ul>
+				</div>
 			</div>
 		</div>
 	);
